@@ -7,13 +7,12 @@ import { useState } from 'react';
 import { DirectoryIcon, SearchIcon } from '@/components/icons';
 import DirectoryResults from './directory-results';
 
-export default function Directory({
-  results,
-  totalUsers
-}: {
+interface IDirectory {
   results: ResultProps[];
   totalUsers: number;
-}) {
+}
+
+export default function Directory({ results, totalUsers }: IDirectory) {
   const [query, setQuery] = useState('');
   const debouncedQuery = useDebounce(query, 200);
   const { data: searchedUsers } = useSWR<UserProps[] | null>(

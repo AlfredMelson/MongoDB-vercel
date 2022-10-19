@@ -13,18 +13,19 @@ import {
 } from '@heroicons/react/outline';
 import Directory from './directory';
 import { ResultProps } from '@/lib/api/user';
+interface ISidebar {
+  sidebarOpen: boolean;
+  setSidebarOpen: (open: boolean) => void;
+  results: ResultProps[];
+  totalUsers: number;
+}
 
 export default function Sidebar({
   sidebarOpen,
   setSidebarOpen,
   results,
   totalUsers
-}: {
-  sidebarOpen: boolean;
-  setSidebarOpen: (open: boolean) => void;
-  results: ResultProps[];
-  totalUsers: number;
-}) {
+}: ISidebar) {
   return (
     <Transition.Root show={sidebarOpen} as={Fragment}>
       <Dialog

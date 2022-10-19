@@ -9,6 +9,15 @@ import { useRouter } from 'next/router';
 import { LoadingDots } from '@/components/icons';
 import ClusterProvisioning from '@/components/layout/cluster-provisioning';
 
+interface ILayout {
+  meta?: MetaProps;
+  results?: ResultProps[];
+  totalUsers?: number;
+  username?: string;
+  clusterStillProvisioning?: boolean;
+  children?: ReactNode;
+}
+
 export default function Layout({
   meta,
   results,
@@ -16,14 +25,7 @@ export default function Layout({
   username,
   clusterStillProvisioning,
   children
-}: {
-  meta: MetaProps;
-  results: ResultProps[];
-  totalUsers: number;
-  username?: string;
-  clusterStillProvisioning?: boolean;
-  children: ReactNode;
-}) {
+}: ILayout) {
   const router = useRouter();
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -43,13 +45,13 @@ export default function Layout({
 
   return (
     <div className="w-full mx-auto h-screen flex overflow-hidden bg-black">
-      <Meta props={meta} />
+      <Meta title={''} description={''} ogUrl={''} ogImage={''} />
       <Toast username={username} />
       <Sidebar
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
-        results={results}
-        totalUsers={totalUsers}
+        results={[]}
+        totalUsers={0}
       />
 
       <div className="flex flex-col min-w-0 flex-1 overflow-hidden">
@@ -61,7 +63,7 @@ export default function Layout({
             {children}
           </main>
           <div className="hidden md:order-first h-screen md:flex md:flex-col">
-            <Directory results={results} totalUsers={totalUsers} />
+            <Directory results={[]} totalUsers={0} />
           </div>
         </div>
       </div>
