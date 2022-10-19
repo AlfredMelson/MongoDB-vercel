@@ -256,5 +256,6 @@ export default function Profile({
 const tabs = [
   { name: 'Profile' },
   { name: 'Work History' },
-  { name: 'Contact' }
+  { name: 'Contact' },
+  { name: 'Local' }
 ];
