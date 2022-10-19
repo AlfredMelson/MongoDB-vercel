@@ -20,16 +20,16 @@ export default async function handler(
   } else if (req.method === 'PUT') {
     const { username, bio } = req.body;
     const session = await getSession({ req });
-    if (!session || session.username !== username) {
+    if (!session || session.user !== username) {
       return res.status(401).json({
         error: 'Unauthorized'
       });
     }
     try {
       const result = await updateUser(username, bio);
-      if (result) {
-        await res.unstable_revalidate(`/${username}`);
-      }
+      // if (result) {
+      //   await res.unstable_revalidate(`/${username}`);
+      // }
       const bioMdx = await getMdxSource(bio); // return bioMdx to optimistically show updated state
       return res.status(200).json(bioMdx);
     } catch (e: any) {
