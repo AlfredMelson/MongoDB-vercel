@@ -3,7 +3,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "yarn setup && next build",
-    "clean": "rimraf node_modules .next yarn.lock",
     "start": "next start",
     "lint": "next lint",
     "setup": "NODE_OPTIONS='--experimental-json-modules' node ./scripts/setup.mjs",
